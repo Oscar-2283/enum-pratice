@@ -6,7 +6,12 @@ export function deepCamelCaseKeys<T>(obj: T): any {
   } else if (_.isObject(obj)) {
     return _.mapValues(
       _.mapKeys(obj, (value, key) => _.camelCase(key)),
-      deepCamelCaseKeys
+      (value) => {
+        if (value === null) {
+          return '';
+        }
+        return deepCamelCaseKeys(value);
+      }
     );
   } else {
     return obj;

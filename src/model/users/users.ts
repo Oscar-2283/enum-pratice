@@ -1,25 +1,20 @@
 import { z } from 'zod';
-import { $_ } from '@/utils/tools';
+import _ from 'lodash';
 import { deepCamelCaseKeys } from '@/utils/camelCase'
 
 
-export function parseConsultantData(data: any) {
+export function parseUsersData(data: any) {
   const tranformData = z.object({
-    account: z.string().nullable(),
-    dislike_amount: z.number(),
-    english_name: z.string().nullable(),
-    hb_consultant_id: z.number(),
-    like_amount: z.number(),
-    picture: z.string().nullable(),
-    user_id: z.number(),
-  }).transform((item) => {
-    const camelCasedItem = $_.mapKeys(item, (value, key) => $_.camelCase(key));
-    return $_.mapValues(camelCasedItem, (value) => value === null ? "" : value);
-  });
+    address: z.object({
+      city:z.string(),
+      country:z.string(),
+      streetName: z.string()
+    })
+  }).passthrough();
   
-  const centerConsultantResults = z.array(tranformData);
+  // const centerUsersResults = z.array(tranformData);
 
-  return centerConsultantResults.parse(data);
+  return tranformData.parse(data);
 }
 
 export function parseConsultantScheduleList(data: any) {

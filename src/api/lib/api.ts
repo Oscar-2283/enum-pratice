@@ -1,5 +1,5 @@
-import Consultant from  '@/api/src/consultant';
+import Users from  '@/api/src/users';
 
 export default {
-  Consultant
+  Users
 };
