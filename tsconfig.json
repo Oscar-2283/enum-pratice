@@ -1,11 +1,26 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "strict": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "allowJs": true,
+    "paths": {
+      "@/*": ["src/*"]
     },
-    {
-      "path": "./tsconfig.app.json"
-    }
-  ]
+    "lib": ["ESNext", "DOM"],
+    // ts(6133) 
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
+    "outDir": "./"
+  },
+  
+  "exclude": ["node_modules", "dist"],
+  "include": ["src/**/*.ts","src/**/*.js", "src/**/*.tsx", "src/**/*.vue" , "auto-imports.d.ts" ] 
 }
